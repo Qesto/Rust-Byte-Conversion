@@ -38,6 +38,7 @@ fn menu_options(mut exit_value:bool) -> bool {
                 println!("Oy! The input buffer is empty!\n");
                 continue;
             }
+            dec_input = rid_of_spaces(dec_input);
 
             let dec_value = dec_input.parse::<i32>().unwrap();
             let mut binary_dec_value = format!("{:b}", dec_value);
@@ -82,6 +83,7 @@ fn menu_options(mut exit_value:bool) -> bool {
                 println!("Oy! The input buffer is empty!\n");
                 continue;
             }
+            binary_input = rid_of_spaces(binary_input);
 
             for d_index_value in binary_input.chars().rev()
             {
@@ -133,6 +135,7 @@ fn menu_options(mut exit_value:bool) -> bool {
                 println!("Oy! The input buffer is empty!\n");
                 continue;
             }
+            hexa_input = rid_of_spaces(hexa_input);
 
             for h_index_value in hexa_input.chars().rev()
             {
@@ -194,6 +197,14 @@ fn menu_options(mut exit_value:bool) -> bool {
         }
     }
     return exit_value;
+}
+
+fn rid_of_spaces(mut input_value:String) -> String  {
+    if input_value.find(" ") != None
+    {
+        input_value = input_value.replace(" ", "");
+    }
+    return input_value;
 }
 
 fn error_checker_for_main(exit_value:bool) -> std::io::Result<()> {
